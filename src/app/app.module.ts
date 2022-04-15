@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { counterReducer } from './counter/store/counter.reducer';
 import { CounterModule } from './counter/counter.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CounterModule } from './counter/counter.module';
     BrowserModule,
     CounterModule,
     AppRoutingModule,
+    FormsModule,
     StoreModule.forRoot({counter : counterReducer})
   ],
   providers: [],
