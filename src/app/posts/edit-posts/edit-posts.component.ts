@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
+import { updatePost } from '../states/posts.actions';
 import { getPostById } from '../states/posts.selector';
 
 @Component({
@@ -13,9 +14,11 @@ import { getPostById } from '../states/posts.selector';
 export class EditPostsComponent implements OnInit {
   post: any;
   postForm : FormGroup;
+  id : any;
   constructor(private route : ActivatedRoute, private store : Store<AppState>) {
     this.route.paramMap.subscribe((parms)=>{
      const id = parms.get('id');
+     this.id = id;
      this.store.select(getPostById,{id}).subscribe((data)=>{
        this.post = data;
        console.log(this.post);
@@ -34,7 +37,15 @@ export class EditPostsComponent implements OnInit {
   }
 
   onUpdatePost() {
-    
+    this.postForm.value.title;
+    this.postForm.value.description;
+
+    let post = {
+      id : this.id,
+      title : this.postForm.value.title,
+      description : this.postForm.value.description
+    }
+    this.store.dispatch(updatePost({post}));
   }
 
 }
