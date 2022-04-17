@@ -4,7 +4,6 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { counterReducer } from './counter/store/counter.reducer';
 import { CounterModule } from './counter/counter.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -20,9 +19,6 @@ import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    PostlistComponent,
-    AddPostsComponent,
-    EditPostsComponent,
   ],
   imports: [
     BrowserModule,

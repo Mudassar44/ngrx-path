@@ -5,7 +5,15 @@ import { CounterComponent } from './counter/counter.component';
 import { CounterOutputComponent } from './counter-output/counter-output.component';
 import { CustomCounterInputComponent } from './custom-counter-input/custom-counter-input.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes : Routes = [
+    {
+      path : 'counter',
+      component : CounterComponent
+    },
+  
+]
 
 @NgModule({
   declarations: [
@@ -16,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class CounterModule { }

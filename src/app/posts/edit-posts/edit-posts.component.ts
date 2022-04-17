@@ -28,8 +28,8 @@ export class EditPostsComponent implements OnInit {
    }
   createForm() {
     this.postForm = new FormGroup({
-      title : new FormControl(this.post.title),
-      description : new FormControl(this.post.description)
+      title : new FormControl(this.post?.title),
+      description : new FormControl(this.post?.description)
     })
   }
 
