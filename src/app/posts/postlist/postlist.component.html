@@ -1,1 +1,47 @@
-<p>postlist works!</p>
+<div class="row">
+    <div class="col-md-8">
+        <h3>
+            Posts list
+        </h3>
+        <div>
+            <a href="#" [routerLink]="['/posts/add']" class="btn btn-primary">Add Post</a>
+        </div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let post of posts$ | async">
+                    <td>
+                        {{post.id}}
+                    </td>
+                    <td>
+                        {{post.title}}
+                    </td>
+                    <td>
+                        {{post.description}}
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary" [routerLink]="['edit',post.id]">Edit</a>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="col-md-4">
+        <router-outlet></router-outlet>
+    </div>
+</div>
