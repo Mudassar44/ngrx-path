@@ -26,7 +26,7 @@ import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
