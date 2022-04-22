@@ -13,7 +13,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './store/app.state';
 import { AddPostsComponent } from './posts/add-posts/add-posts.component';
 import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthService } from './services/auth.service';
+import { AuthEffect } from './auth/store/auth.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +28,11 @@ import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
     CounterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AuthEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
@@ -38,7 +44,7 @@ import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
       }
     })
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
