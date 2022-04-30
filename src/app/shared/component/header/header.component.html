@@ -9,8 +9,9 @@
           <a class="nav-link active" aria-current="page">Home</a>
           <a class="nav-link" [routerLink]="['/counter']">Counter</a>
           <a class="nav-link" [routerLink]="['/posts']">Posts</a>
-          <a class="nav-link" [routerLink]="['/auth']">Login</a>
-          <a class="nav-link" [routerLink]="['/auth/signup']">Sign up</a>
+          <a  *ngIf="!(isAuthenticated | async)"  class="nav-link" [routerLink]="['/auth']">Login</a>
+          <a *ngIf="!(isAuthenticated | async)" class="nav-link" [routerLink]="['/auth/signup']">Sign up</a>
+          <a *ngIf="(isAuthenticated | async)" class="nav-link" [routerLink]="['/auth/signup']">Logout</a>
         </div>
       </div>
     </div>

@@ -18,10 +18,10 @@ export class CounterOutputComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.store.select('counter').subscribe((counter)=>{
-    //   this.counter = counter.counter;
-    // })
-   this.counter$ = this.store.select('counter');
+  //   this.store.select('counter').subscribe((counter)=>{
+  //     this.counter = counter.counter;
+  //   })
+  //  this.counter$ = this.store.select(getCounterState);
   }
 
 }

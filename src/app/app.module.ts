@@ -17,11 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthService } from './services/auth.service';
 import { AuthEffect } from './auth/store/auth.effects';
+import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
+import { AuthReducer } from './auth/store/auth.reducer';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { AuthEffect } from './auth/store/auth.effects';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}),
+    // StoreModule.forFeature('auth',AuthReducer),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([AuthEffect]),
     StoreDevtoolsModule.instrument({
