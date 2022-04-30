@@ -5,6 +5,7 @@ import { StoreModule } from "@ngrx/store";
 import { LoginComponent } from './login/login.component';
 import { AuthEffect } from "./store/auth.effects";
 import { AuthReducer } from "./store/auth.reducer";
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes : Routes = [
@@ -14,6 +15,9 @@ const routes : Routes = [
         },
         {
             path : 'login', component : LoginComponent
+        },
+        {
+            path : 'signup', component : SignupComponent
         }
     ]
     }
@@ -21,7 +25,8 @@ const routes : Routes = [
 
 @NgModule({
     declarations : [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
     imports : [
         RouterModule.forChild(routes),

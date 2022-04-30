@@ -16,6 +16,11 @@ export class AuthService {
         
     }
 
+    signup(email,password) : Observable<AuthResponseData> {
+      return this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIREBASE_API_KEY}`,
+      {email,password,returnSecureToken: true});
+    }
+
     login(email,password)  : Observable<AuthResponseData>{
 
       return this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIREBASE_API_KEY}`,

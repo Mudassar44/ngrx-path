@@ -6,7 +6,7 @@ import { exhaustMap, map, tap } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { AppState } from "src/app/store/app.state";
 import { setLoadingSpinner } from "src/app/store/shared/shared.action";
-import { loginstart, loginsuccess } from "./auth.actions";
+import { loginstart, loginsuccess, signupstart, signupsuccess } from "./auth.actions";
 
 
 
@@ -39,12 +39,24 @@ export class AuthEffect {
 
     loginRedirect$ = createEffect(()=> {
         return this.actions$.pipe(
-            ofType(loginsuccess),
+            ofType(...[loginsuccess,signupsuccess]),
             tap((action)=>{
                 this.router.navigate(['/']);
             })
         )
     },{dispatch:false});
 
-
+    signUp$ = createEffect(()=>{
+        return this.actions$.pipe(
+            ofType(signupstart),
+            exhaustMap((action)=>{
+                return this.authService.signup(action.email,action.password).pipe(
+                    map((data)=>{
+                        const user = this.authService.formatUser(data);
+                        return signupsuccess({user});
+                    })
+                )
+            })
+        )
+    })
     }
