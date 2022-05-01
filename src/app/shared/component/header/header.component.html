@@ -11,7 +11,7 @@
           <a class="nav-link" [routerLink]="['/posts']">Posts</a>
           <a  *ngIf="!(isAuthenticated | async)"  class="nav-link" [routerLink]="['/auth']">Login</a>
           <a *ngIf="!(isAuthenticated | async)" class="nav-link" [routerLink]="['/auth/signup']">Sign up</a>
-          <a *ngIf="(isAuthenticated | async)" class="nav-link" [routerLink]="['/auth/signup']">Logout</a>
+          <a *ngIf="(isAuthenticated | async)" class="nav-link"  (click)="onLogout($event)">Logout</a>
         </div>
       </div>
     </div>

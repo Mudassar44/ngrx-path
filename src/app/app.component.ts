@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { autologin } from './auth/store/auth.actions';
 import { AppState } from './store/app.state';
 import { getLoading } from './store/shared/shared.selectore';
 
@@ -21,5 +22,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(): void {
     this.showLoading = this.store.select(getLoading);
+
+    this.store.dispatch(autologin());
   }
 }
