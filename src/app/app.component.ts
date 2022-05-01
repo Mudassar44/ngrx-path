@@ -27,13 +27,13 @@ constructor(private store : Store<AppState>,private resolver : ComponentFactoryR
     
   }
   ngOnInit(): void {
-    this.placeholder.clear();
-     const componentFactory = this.resolver.resolveComponentFactory(DynamicComponent);
-    const component = this.placeholder.createComponent(componentFactory);
-    component.instance.title = "Dynamic Component";
+    // this.placeholder.clear();
+    //  const componentFactory = this.resolver.resolveComponentFactory(DynamicComponent);
+    // const component = this.placeholder.createComponent(componentFactory);
+    // component.instance.title = "Dynamic Component";
 
-    // this.showLoading = this.store.select(getLoading);
+    this.showLoading = this.store.select(getLoading);
 
-    // this.store.dispatch(autologin());
+    this.store.dispatch(autologin());
   }
 }
