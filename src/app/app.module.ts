@@ -13,12 +13,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './store/app.state';
 import { AddPostsComponent } from './posts/add-posts/add-posts.component';
 import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthService } from './services/auth.service';
 import { AuthEffect } from './auth/store/auth.effects';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 import { AuthReducer } from './auth/store/auth.reducer';
+import { AuthTokenInterceptor } from './services/auth.token.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,9 @@ import { AuthReducer } from './auth/store/auth.reducer';
       }
     })
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
