@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { exhaustMap, Observable } from "rxjs";
+import { exhaustMap, Observable, take } from "rxjs";
 import { getToken } from "../auth/store/auth.selector";
 import { AppState } from "../store/app.state";
 
@@ -14,7 +14,9 @@ export class AuthTokenInterceptor implements HttpInterceptor {
         
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
         return this.store.select(getToken).pipe(
+            take(1),
             exhaustMap((token) => {
               if (!token) {
                 return next.handle(req);
