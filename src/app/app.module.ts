@@ -20,12 +20,14 @@ import { AuthEffect } from './auth/store/auth.effects';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 import { AuthReducer } from './auth/store/auth.reducer';
 import { AuthTokenInterceptor } from './services/auth.token.interceptor';
+import { DynamicComponent } from './dynamic/dynamic.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
     LoadingSpinnerComponent,
+    // DynamicComponent,
   ],
   imports: [
     BrowserModule,
