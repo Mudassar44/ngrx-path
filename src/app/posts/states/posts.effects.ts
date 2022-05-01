@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { map, mergeMap } from "rxjs";
 import { PostService } from "src/app/services/post.service";
-import { addPost, loadPost, loadPostSuccess } from "./posts.actions";
+import { addPost, addPostSuccess, loadPost, loadPostSuccess } from "./posts.actions";
 import { Post } from "./posts.states";
 @Injectable()
 export class PostsEffects {
@@ -25,8 +25,11 @@ export class PostsEffects {
                     map((postsData:any[])=>{
                         console.log(postsData);
                         let posts: Post[] = [];
-                        postsData.forEach((val)=>{
-                            posts.push({id : val.id,title : val.title,description : val.description});
+                       let keys = Object.keys(postsData);
+
+                        keys.forEach((val)=>{
+                            let post = postsData[val];
+                            posts.push({id : post.id,title : post.title,description : post.description});
                         })
                       return  loadPostSuccess({posts});
                     })
@@ -34,4 +37,14 @@ export class PostsEffects {
             })
         )
     });
+
+    addPost$ = createEffect(() => {
+       return this.actions$.pipe(ofType(addPost), mergeMap(action => {
+            return this.postsService.addPost(action.post).pipe(map((data:any) => {
+                console.log(data);
+                const post = {...action.post, id : data?.name};
+                return addPostSuccess({post});
+            }))
+        }))   
+    })
 }
